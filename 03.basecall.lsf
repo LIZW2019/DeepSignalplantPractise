@@ -1,0 +1,21 @@
+#BSUB -J lizw_guppy
+#BSUB -n 8
+#BSUB -o %J.stdout
+#BSUB -e %J.stderr
+#BSUB -gpu "num=2"
+
+#-i input folder
+#-s output folder
+#-c basecalling model, select based on the kit and equipment
+#--recursive search for fast5 in the sub-folder of input
+
+guppy_basecaller \
+-i ./SINGLE_sample_data \
+-s ./SINGLE_sample_data/fastq \
+-c dna_r9.4.1_450bps_hac.cfg \
+--recursive \
+--disable_pings \
+--qscore_filtering \
+--device "cuda:all:100%"
+
+

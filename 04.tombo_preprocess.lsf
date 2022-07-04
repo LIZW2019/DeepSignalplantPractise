@@ -1,0 +1,16 @@
+#BSUB -J tombo_preprocess
+#BSUB -n 30
+#BSUB -o %J.stdout
+#BSUB -e %J.stderr
+
+#environment setting
+export PATH=/scem/work/mowp/anaconda3/envs/deepsignalpenv/bin/:$PATH
+#main
+cat ./SINGLE_sample_data/fastq/pass/*fastq > ./SINGLE_sample_data/fastq/pass.fastq
+tombo preprocess annotate_raw_with_fastqs \
+--fast5-basedir ./SINGLE_sample_data \
+--fastq-filenames ./SINGLE_sample_data/fastq/pass.fastq \
+--sequencing-summary-filenames ./SINGLE_sample_data/fastq/sequencing_summary.txt \
+--overwrite \
+--processes 30
+

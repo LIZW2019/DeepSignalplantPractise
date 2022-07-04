@@ -1,0 +1,15 @@
+#BSUB -J tombo_resquiggle
+#BSUB -n 30
+#BSUB -o %J.stdout
+#BSUB -e %J.stderr
+#environment setting
+export PATH=/scem/work/mowp/anaconda3/envs/deepsignalpenv/bin/:$PATH
+#main
+tombo resquiggle \
+./SINGLE_sample_data \
+./reference/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz \
+--processes 30 \
+--corrected-group RawGenomeCorrected_000 \
+--basecall-group Basecall_1D_000 \
+--overwrite \
+--ignore-read-locks
