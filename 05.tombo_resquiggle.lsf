@@ -1,9 +1,5 @@
-#BSUB -J tombo_resquiggle
-#BSUB -n 30
-#BSUB -o %J.stdout
-#BSUB -e %J.stderr
 #environment setting
-export PATH=/scem/work/mowp/anaconda3/envs/deepsignalpenv/bin/:$PATH
+export PATH=$CondaEnv/deepsignalpenv/bin:$PATH
 #main
 tombo resquiggle \
 ./SINGLE_sample_data \
