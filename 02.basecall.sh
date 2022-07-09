@@ -1,3 +1,4 @@
+#02.basecall.sh
 guppy_basecaller \
 -i ./SINGLE_sample_data \
 -s ./SINGLE_sample_data/fastq \
@@ -5,3 +6,4 @@ guppy_basecaller \
 --recursive \
 --disable_pings \
 --qscore_filtering \
+--device "cuda:all:100%"

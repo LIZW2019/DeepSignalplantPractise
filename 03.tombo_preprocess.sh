@@ -1,6 +1,7 @@
-#environment setting
+#03.tombo_preprocess.sh
+#environment setting, replace $CondaEnv/deepsignalpenv with your actual path
 export PATH=$CondaEnv/deepsignalpenv/bin:$PATH
-#main
+# Tombo preprocess
 cat ./SINGLE_sample_data/fastq/pass/*fastq > ./SINGLE_sample_data/fastq/pass.fastq
 tombo preprocess annotate_raw_with_fastqs \
 --fast5-basedir ./SINGLE_sample_data \

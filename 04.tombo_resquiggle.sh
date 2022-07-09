@@ -1,6 +1,7 @@
-#environment setting
+#04.tombo_resquiggle.sh
+#environment setting, replace $CondaEnv/deepsignalpenv with your actual path
 export PATH=$CondaEnv/deepsignalpenv/bin:$PATH
-#main
+# resquiggler
 tombo resquiggle \
 ./SINGLE_sample_data \
 ./reference/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz \
