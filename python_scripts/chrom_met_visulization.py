@@ -44,13 +44,13 @@ def plot_met_chr(cg_bedg,chg_bedg,chh_bedg,region_bed,chrom,outdir):
     plt.rcParams['font.family'] = 'Arial'
     plt.rcParams['font.size'] = 30
     plt.rcParams['svg.fonttype'] = 'none'
-    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(30,8), sharey=True)
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(15,8), sharey=True)
 
     color_list = ['#262180','#4C7C5D','#632523']
 
     n = 0
     for i in [CG_table,CHG_table,CHH_table]:
-        ax_chr = ax[0]
+        ax_chr = ax
         df = i.query('chrom == @chrom')
         ax_chr.plot(df['binstart'], df['met_level_final'], color=color_list[n],lw=4)
         ax_chr.set_xticks([0, chrom_size])
@@ -64,18 +64,11 @@ def plot_met_chr(cg_bedg,chg_bedg,chh_bedg,region_bed,chrom,outdir):
                     Line2D([0], [0], color='#4C7C5D', lw=4),
                     Line2D([0], [0], color='#632523', lw=4)]
 
-    ax[1].legend(custom_lines, ['CG','CHG','CHH'],loc='upper left')
-    ax[1].spines['right'].set_color('none')
-    ax[1].spines['bottom'].set_color('none')
-    ax[1].spines['left'].set_color('none')
-    ax[1].spines['top'].set_color('none')
-    ax[1].set_xticks([])
-    ax[1].set_yticks([])
-
+    ax.legend(custom_lines, ['CG','CHG','CHH'],loc='upper right')
 
     plt.ylim(0, 1)
     plt.yticks([0, 1])
-    ax[0].set_ylabel('Methylation Level')
+    ax.set_ylabel('Methylation Level')
 
     plt.savefig(f'{outdir}/Chr{chrom}_methylation_distribution.png',format='png',dpi=300,bbox_inches='tight')
 
