@@ -37,7 +37,7 @@ tar -zxvf sample_data.tar.gz
 
 In the “sample_data” folder, users will find four files ending in .fast5. These example files are in FAST5 format and generated from Nanopore sequencing, containing the raw electric signal that we can call the base sequence and modification. Users can refer to https://hasindu2008.github.io/slow5specs/fast5_demystified.pdf for a detailed introduction of the FAST5 format.
 
-2. Reference genome in fasta format for mapping. Genome gff file should be downloaded and the chromosome coordinates are extracted for Step 8 input.
+2. Reference genome in fasta format for mapping in Step4. Genome gff file should be downloaded and the chromosome coordinates are extracted for Step 8 input.
 ```
 cd DeepSignalplantPractise
 mkdir reference
@@ -56,13 +56,13 @@ awk -F "\t" '{if($3=="chromosome") print($1"\t"$4-1"\t"$5)}' Arabidopsis_thalian
 
 In this protocol, we use $PATHofDeepSignalPlant to indicate the path for Deepsignal-plant download and $CondaEnv to indicate the path of the Conda environment. Users will need to replace these two variables manually with the path they use.
 
-## Step1. Convert the multi-read FAST5 into single-read form
+**Step1. Convert the multi-read FAST5 into single-read form**
 ```
 #01.multi_to_single_fast5.sh
 multi_to_single_fast5 -i ./sample_data -s ./SINGLE_sample_data -t 30 --recursive
 ```
 
-## Step2. Basecall FAST5 files with Guppy
+**Step2. Basecall FAST5 files with Guppy**
 
 ```
 #02.basecall.sh
@@ -76,7 +76,7 @@ guppy_basecaller \
 --device "cuda:all:100%"
 ```
 
-## Step3. Add the basecalled sequence back to FAST5 with Tombo preprocess
+**Step3. Add the basecalled sequence back to FAST5 with Tombo preprocess**
 
 ```
 #03.tombo_preprocess.sh
@@ -91,7 +91,7 @@ tombo preprocess annotate_raw_with_fastqs \
 --overwrite \
 --processes 30
 ```
-## Step4. Map the raw signal to reference genome with Tombo resquiggle
+**Step4. Map the raw signal to reference genome with Tombo resquiggle**
 
 ```
 #04.tombo_resquiggle.sh
@@ -108,7 +108,7 @@ tombo resquiggle \
 --ignore-read-locks
 ```
 
-## Step5. Call methylation of reads with DeepSignal-plant call_mods
+**Step5. Call methylation of reads with DeepSignal-plant call_mods**
 ```
 #05.deepplant-met-mod.sh
 #environment setting, replace $CondaEnv/deepsignalpenv with actual path
@@ -123,7 +123,7 @@ CUDA_VISIBLE_DEVICES=0,1 deepsignal_plant call_mods \
 --motifs C --nproc 30 --nproc_gpu 2
 ```
 
-## Step6. Calculate methylation frequency with DeepSignal-plant call_freq
+**Step6. Calculate methylation frequency with DeepSignal-plant call_freq**
 ```
 #06.deepplant-met-freq.sh
 #environment setting, replace $CondaEnv/deepsignalpenv with actual path
@@ -135,7 +135,7 @@ deepsignal_plant call_freq \
 --sort --bed
 ```
 
-## Step7. Split the result into CG, CHG, and CHH context
+**Step7. Split the result into CG, CHG, and CHH context**
 ```
 #07.split_context.sh
 python $PATHofDeepSignalPlant/scripts/split_freq_file_by_5mC_motif.py \
@@ -143,7 +143,7 @@ python $PATHofDeepSignalPlant/scripts/split_freq_file_by_5mC_motif.py \
 --ref ./reference/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa
 ```
 
-## Step8. Calculate the weighted methylation level in the bin
+**Step8. Calculate the weighted methylation level in the bin**
 
 ```
 #08.met_level_bin.sh
@@ -155,7 +155,7 @@ python python_scripts/met_level_bin.py \
 --outdir ./
 ```
 
-## Step9. Visualize the methylation level by IGV and python plotting
+**Step9. Visualize the methylation level by IGV and python plotting**
 
 ```
 #09.chrom_met_visulization.sh
