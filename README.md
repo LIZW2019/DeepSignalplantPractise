@@ -1,5 +1,5 @@
 # Overview
-
+![](https://i.bmp.ovh/imgs/2022/07/15/a391a1e5c274bdf7.png)
 # Installation
 1.	[Guppy 4.0.0+](https://timkahlke.github.io/LongRead_tutorials/BS_G.html)
 2.	[DeepSignal-plant v0.1.5](https://github.com/PengNi/DeepSignal-plant)
@@ -25,7 +25,8 @@ https://drive.google.com/drive/folders/1XCL6Ovvv9fpjg8A9prgIu2T7Ta5Yjc28?usp=sha
 # Major steps 
 
 # Expected results
-## IGV
+* IGV
 ![](https://i.bmp.ovh/imgs/2022/07/15/6926219c876358d3.png)
-## python plot
+
+* python plot
 ![](https://s3.bmp.ovh/imgs/2022/07/15/2d6b39652145e048.png)
