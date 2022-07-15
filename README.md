@@ -26,6 +26,6 @@ https://drive.google.com/drive/folders/1XCL6Ovvv9fpjg8A9prgIu2T7Ta5Yjc28?usp=sha
 
 # Expected results
 * IGV
-* ![](https://i.bmp.ovh/imgs/2022/07/15/6926219c876358d3.png)
+![](https://i.bmp.ovh/imgs/2022/07/15/6926219c876358d3.png)
 * python plot
-* ![](https://s3.bmp.ovh/imgs/2022/07/15/2d6b39652145e048.png)
+![](https://s3.bmp.ovh/imgs/2022/07/15/2d6b39652145e048.png)
