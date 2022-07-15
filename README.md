@@ -25,7 +25,7 @@ https://drive.google.com/drive/folders/1XCL6Ovvv9fpjg8A9prgIu2T7Ta5Yjc28?usp=sha
 # Major steps 
 
 # Expected results
-* IGV
+## IGV
 ![](https://i.bmp.ovh/imgs/2022/07/15/6926219c876358d3.png)
-* python plot
+## python plot
 ![](https://s3.bmp.ovh/imgs/2022/07/15/2d6b39652145e048.png)
