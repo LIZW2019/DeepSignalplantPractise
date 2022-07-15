@@ -24,8 +24,7 @@ h5ls tools we use to preview the FAST5 files would be installed automatically wi
 
 # Input Data
 
-Input data
-1. Data generated from Nanopore direct DNA sequencing in FAST5 format.
+* Data generated from Nanopore direct DNA sequencing in FAST5 format.
 Sample data can be download from the google device:   
 https://drive.google.com/drive/folders/1XCL6Ovvv9fpjg8A9prgIu2T7Ta5Yjc28?usp=sharing
 
@@ -37,7 +36,7 @@ tar -zxvf sample_data.tar.gz
 
 In the “sample_data” folder, users will find four files ending in .fast5. These example files are in FAST5 format and generated from Nanopore sequencing, containing the raw electric signal that we can call the base sequence and modification. Users can refer to https://hasindu2008.github.io/slow5specs/fast5_demystified.pdf for a detailed introduction of the FAST5 format.
 
-2. Reference genome in fasta format for mapping in Step4. Genome gff file should be downloaded and the chromosome coordinates are extracted for Step 8 input.
+* Reference genome in fasta format for mapping in Step4. Genome gff file should be downloaded and the chromosome coordinates are extracted for Step 8 input.
 ```
 cd DeepSignalplantPractise
 mkdir reference
@@ -50,7 +49,7 @@ gunzip Arabidopsis_thaliana.TAIR10.53.gff3.gz
 awk -F "\t" '{if($3=="chromosome") print($1"\t"$4-1"\t"$5)}' Arabidopsis_thaliana.TAIR10.53.gff3 > Tair10_genome.bed
 ```
 
-3. Download the model provided by DeepSignal-plant and move it for a new create folder "model" for 5mC calling in step5.
+* Download the model provided by DeepSignal-plant and move it for a new create folder "model" for 5mC calling in step5.
 
 # Major steps 
 
