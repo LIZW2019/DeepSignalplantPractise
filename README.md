@@ -51,8 +51,8 @@ gunzip Arabidopsis_thaliana.TAIR10.53.gff3.gz
 awk -F "\t" '{if($3=="chromosome") print($1"\t"$4-1"\t"$5)}' Arabidopsis_thaliana.TAIR10.53.gff3 > Tair10_genome.bed
 ```
 
-**Pretrain model**
-Download the model provided by DeepSignal-plant and move it for a new create folder "model" for 5mC calling in step5.
+**3.Pretrain model**  
+Download the model provided by DeepSignal-plant and move it to a new created folder "model" for 5mC calling in sStep5.
 
 # Major steps 
 
