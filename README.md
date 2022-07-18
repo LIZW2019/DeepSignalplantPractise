@@ -195,9 +195,10 @@ python ../lib/python_scripts/chrom_met_visulization.py \
 --chrom 4 --outdir ../output
 ```
 
-# The intermediate results and the final results of this workflow is large, so we keep only part of the files as examples under the folder "cache" and "output" respectively, with the name marked with "EXAMPLE". 
-
 # Expected results
+**The intermediate results and the final results of this workflow is large, so we keep only part of the files as examples under the folder "cache" and "output" respectively, with the name marked with "EXAMPLE".** 
+
+
 * IGV 
 （换成github路径）
 ![](../graphs/IGV.png)
