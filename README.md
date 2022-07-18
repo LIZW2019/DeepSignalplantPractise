@@ -33,7 +33,7 @@ git clone https://github.com/PengNi/deepsignal-plant.git
 
 You will find the script "split_freq_file_by_5mC_motif.py" under the folder "DeepSignalplantPractise/lib/deepsignal-plant/scripts", which will be used in Step7.
 
-The script "lib/python_scripts/met_level_bin.py" is used for bin methylation level calculation in Step8. 
+The script "lib/python_scripts/met_level_bin.py" is used for bin methylation level calculation in Step8.   
 The script "lib/python_scripts/chrom_met_visulization.py" is for methylation level distribution plot in Step9. 
 
 # Input Data
