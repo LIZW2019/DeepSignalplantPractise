@@ -1,5 +1,5 @@
 # Overview
-![](../graphs/pipeline v4.png)
+![](./graphs/pipeline v4.png)
 
 # Equipment 
 
@@ -201,8 +201,8 @@ python ../lib/python_scripts/chrom_met_visulization.py \
 
 * IGV 
 （换成github路径）
-![](../graphs/IGV.png)
+![](./graphs/IGV.png)
 
 （换成github路径）
 * python plot
-![](../graphs/Chr4_methylation_distribution.png)
+![](./graphs/Chr4_methylation_distribution.png)
