@@ -8,7 +8,7 @@ Linux version 3.10.0-862.el7.x86_64 (Red Hat 4.8.5-28) with 48 CPU (2*Intel Gold
 # Installation
 1.	[Guppy 4.0.0+](https://timkahlke.github.io/LongRead_tutorials/BS_G.html)
 2.	[DeepSignal-plant v0.1.5](https://github.com/PengNi/DeepSignal-plant)
-* The pipeline for DeepSignal-plant depends on software listed as follow:  
+* The pipeline of DeepSignal-plant depends on the softwares listed as follow:  
   a.	[ont_fast5_api v4.0.2](https://github.com/nanoporetech/ont_fast5_api)  
   b.	[tombo v1.5.1](https://github.com/nanoporetech/tombo)  
   c.	[Conda v4.9.2](https://docs.conda.io/en/latest/)  
@@ -176,7 +176,7 @@ python ../lib/DeepsingalPlant_scripts/deepsignal-plant/scripts/split_freq_file_b
 ```
 #08.met_level_bin.sh
 python ../lib/python_scripts/met_level_bin.py \
---region_bed reference/Tair10_genome.bed \
+--region_bed ../input/reference/Tair10_genome.bed \
 --met_bed ../input/Step8_Input/porec_rep2/forstep08/Rep2_fast5s.C.call_mods.CG.frequency.bed \
 --prefix Rep2_fast5s.C.call_mods.CG \
 --binsize 100000 \
@@ -196,13 +196,11 @@ python ../lib/python_scripts/chrom_met_visulization.py \
 ```
 
 # Expected results
-**The intermediate results and the final results of this workflow is large, so we keep only part of the files as examples under the folder "cache" and "output" respectively, with the name marked with "EXAMPLE".** 
+**The intermediate results and the final results of this workflow is large, so we keep only part of the files as examples under the folder "cache" and "output" respectively, with the name marked with "EXAMPLE".**
 
 
 * IGV 
-（换成github路径）
 ![](./graphs/IGV.png)
 
-（换成github路径）
 * python plot
 ![](./graphs/Chr4_methylation_distribution.png)
