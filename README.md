@@ -97,7 +97,6 @@ multi_to_single_fast5 -i ../input/Step1_Input/sample_data -s ../cache/SINGLE_sam
 
 ```
 #02.basecall.sh
-#02.basecall.sh
 guppy_basecaller \
 -i ../cache/SINGLE_sample_data/ \
 -s ../cache/SINGLE_sample_data/fastq \
