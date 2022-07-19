@@ -95,6 +95,7 @@ multi_to_single_fast5 -i ../input/Step1_Input/sample_data -s ../cache/SINGLE_sam
 
 ```
 #02.basecall.sh
+#02.basecall.sh
 guppy_basecaller \
 -i ../cache/SINGLE_sample_data/ \
 -s ../cache/SINGLE_sample_data/fastq \
@@ -110,7 +111,7 @@ guppy_basecaller \
 ```
 #03.tombo_preprocess.sh
 #environment setting, replace $CondaEnv/deepsignalpenv with your actual path
-export PATH=/public/home/lizw/anaconda3/envs/deepsignalpenv/bin:$PATH
+export PATH=$CondaEnv/deepsignalpenv/bin:$PATH
 # Tombo preprocess
 cat ../cache/SINGLE_sample_data/fastq/pass/*fastq > ../cache/SINGLE_sample_data/fastq/pass.fastq
 tombo preprocess annotate_raw_with_fastqs \
@@ -125,7 +126,7 @@ tombo preprocess annotate_raw_with_fastqs \
 ```
 #04.tombo_resquiggle.sh
 #environment setting, replace $CondaEnv/deepsignalpenv with your actual path
-export PATH=/public/home/lizw/anaconda3/envs/deepsignalpenv/bin:$PATH
+export PATH=$CondaEnv/deepsignalpenv/bin:$PATH
 # resquiggler
 tombo resquiggle \
 ../cache/SINGLE_sample_data/ \
@@ -141,7 +142,7 @@ tombo resquiggle \
 ```
 #05.deepplant-met-mod.sh
 #environment setting, replace $CondaEnv/deepsignalpenv with your actual path
-export PATH=/public/home/lizw/anaconda3/envs/deepsignalpenv/bin:$PATH
+export PATH=$CondaEnv/deepsignalpenv/bin:$PATH
 #call 5mC
 CUDA_VISIBLE_DEVICES=0,1 deepsignal_plant call_mods \
 --input_path ../cache/SINGLE_sample_data \
@@ -156,7 +157,7 @@ CUDA_VISIBLE_DEVICES=0,1 deepsignal_plant call_mods \
 ```
 #06.deepplant-met-freq.sh
 #environment setting, replace $CondaEnv/deepsignalpenv with your actual path
-export PATH=/public/home/lizw/anaconda3/envs/deepsignalpenv/bin:$PATH
+export PATH=$CondaEnv/deepsignalpenv/bin:$PATH
 #calculate frequency
 deepsignal_plant call_freq \
 --input_path ../cache/SINGLE_sample_data/fast5s.C.call_mods.tsv \
@@ -167,7 +168,8 @@ deepsignal_plant call_freq \
 **Step7. Split the result into CG, CHG, and CHH context**
 ```
 #07.split_context.sh
-python ../lib/DeepsingalPlant_scripts/deepsignal-plant/scripts/split_freq_file_by_5mC_motif.py \
+#replace $PATHofDeepSignalPlant with your actual path
+python $PATHofDeepSignalPlant/scripts/split_freq_file_by_5mC_motif.py \
 --freqfile ../cache/SINGLE_sample_data/fast5s.C.call_mods.freq.bed \
 --ref ../input/reference/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa
 ```
