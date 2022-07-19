@@ -43,11 +43,10 @@ If you clone this repository to your server, you will find a folder named "DeepS
 ```
 git clone https://github.com/LIZW2019/DeepSignalplantPractise.git
 ```
-
 The input data should be downloaded into different subfolders under the "DeepSignalplantPractise/input"
 
-**1.Sequence data in FAST5 format**
-Data generated from Nanopore direct DNA sequencing in FAST5 format.
+**a.Sequence data in FAST5 format**
+Data generated from Nanopore direct DNA sequencing is in FAST5 format.
 Sample data can be download from the google device:   
 https://drive.google.com/drive/folders/1XCL6Ovvv9fpjg8A9prgIu2T7Ta5Yjc28?usp=sharing
 
@@ -59,27 +58,29 @@ tar -zxvf sample_data.tar.gz
 
 In the “sample_data” folder, users will find four files ending in .fast5. These example files are in FAST5 format and generated from Nanopore sequencing, containing the raw electric signal that we can call the base sequence and modification. Users can refer to https://hasindu2008.github.io/slow5specs/fast5_demystified.pdf for a detailed introduction of the FAST5 format.
 
-In the google drive path, the three files under the folder "Pore-C_Rep2_example" are prepared as example input for Step8. They should be downloaded and transfer to the folder "DeepSignalplantPractise/input/Step8_Input"
-
-**2.Reference genome**
-Reference genome in fasta format for mapping in Step4. Genome gff file should be downloaded and the chromosome coordinates are extracted for Step8 input.
+**b.Reference genome**
+Download the reference genome in fasta format for mapping in Step4. Download the Genome gff file and extract the chromosome coordinates for Step8 input.
 ```
-cd ./DeepSignalplantPractise/input/reference
+#download reference genome
+cd ./DeepSignalplantPractise/input/
 mkdir reference
 cd reference
 wget -c http://ftp.ensemblgenomes.org/pub/plants/release-53/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz 
 gunzip Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
+
+#download gff file
+cd ./DeepSignalplantPractise/input/reference
 wget -c http://ftp.ensemblgenomes.org/pub/plants/release-53/gff3/arabidopsis_thaliana/Arabidopsis_thaliana.TAIR10.53.gff3.gz 
 gunzip Arabidopsis_thaliana.TAIR10.53.gff3.gz
 #extract the chromosomes coordinates
 awk -F "\t" '{if($3=="chromosome") print($1"\t"$4-1"\t"$5)}' Arabidopsis_thaliana.TAIR10.53.gff3 > Tair10_genome.bed
 ```
 
-**3.Pretrain model**  
+**c.Pretrained model**  
 Download the model provided by DeepSignal-plant on its GitHub page (https://github.com/PengNi/DeepSignal-plant ) and move it to the folder "DeepSignalplantPractise/input/model" for 5mC calling in Step5.
 
-**4.Preprocessed data for bin calculation**
-Download the data provided in 
+**d.Preprocessed data for bin calculation**
+Download the data provided in google drive under the folder "Pore-C_Rep2_example" and move to the "DeepSignalplantPractise/input/Step8_Input" for the bin methyaltion level calculation and visualtion.
 
 # Major steps 
 
