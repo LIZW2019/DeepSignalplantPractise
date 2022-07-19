@@ -8,7 +8,7 @@ Linux version 3.10.0-862.el7.x86_64 (Red Hat 4.8.5-28) with 48 CPU (2*Intel Gold
 # Installation
 1.	[Guppy 4.0.0+](https://timkahlke.github.io/LongRead_tutorials/BS_G.html)
 2.	[DeepSignal-plant v0.1.5](https://github.com/PengNi/DeepSignal-plant)
-* The pipeline for DeepSignal-plant depends on software listed as follow:  
+* The pipeline of DeepSignal-plant depends on the softwares listed as follow:  
   a.	[ont_fast5_api v4.0.2](https://github.com/nanoporetech/ont_fast5_api)  
   b.	[tombo v1.5.1](https://github.com/nanoporetech/tombo)  
   c.	[Conda v4.9.2](https://docs.conda.io/en/latest/)  
