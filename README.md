@@ -6,6 +6,7 @@
 Linux version 3.10.0-862.el7.x86_64 (Red Hat 4.8.5-28) with 48 CPU (2*Intel Gold 6140, 18 cores, 2.3 Ghz) and GPU (2*Nvidia V100, 640 cores, 32 GB).
 
 # Installation
+The following software shoud be installed according to the guidance in the related protocol.
 1.	[Guppy 4.0.0+](https://timkahlke.github.io/LongRead_tutorials/BS_G.html)
 2.	[DeepSignal-plant v0.1.5](https://github.com/PengNi/DeepSignal-plant)
 * The pipeline of DeepSignal-plant depends on the softwares listed as follow:  
