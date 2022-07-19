@@ -1,5 +1,5 @@
 # Overview
-![](./graphs/pipeline\ v4.png)
+![](./graphs/pipeline_v4.png)
 
 # Equipment 
 
