@@ -202,5 +202,5 @@ python ../lib/python_scripts/chrom_met_visulization.py \
 * IGV 
 ![](./graphs/IGV.png)
 
-* python plot
+* Python plot
 ![](./graphs/Chr4_methylation_distribution.png)
