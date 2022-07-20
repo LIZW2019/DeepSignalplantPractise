@@ -197,8 +197,7 @@ python ../lib/python_scripts/chrom_met_visulization.py \
 ```
 
 # Expected results  
-**The intermediate results and the final results of this workflow is large, so we keep only part of the files as examples under the folder "cache" and "output" respectively, with the name marked with "EXAMPLE".**
-
+**The intermediate results and the final results of this workflow is large, so we keep only part of the files as examples under the folder "cache" and "output" respectively, with the name marked with "EXAMPLE".** The results can be visualized as follow:
 
 * IGV 
 ![](./graphs/IGV.png)
