@@ -42,10 +42,10 @@ git clone https://github.com/PengNi/deepsignal-plant.git
 You will find the script "split_freq_file_by_5mC_motif.py" under the folder "DeepSignalplantPractise/lib/deepsignal-plant/scripts", which will be used in Step7.
 We also use $PATHofDeepSignalPlant to indicate the path for Deepsignal-plant download in the commands. In this case, $PATHofDeepSignalPlant = "DeepSignalplantPractise/lib/deepsignal-plant/scripts".
 
-# Input Data
+# Input Data  
 The input data should be downloaded into different subfolders under the "DeepSignalplantPractise/input". The data we provided can be access in the our shared Google Drive folder: https://drive.google.com/drive/folders/1XCL6Ovvv9fpjg8A9prgIu2T7Ta5Yjc28
 
-**a.Sequence data in FAST5 format**
+**a.Sequence data in FAST5 format**  
 Data generated from Nanopore direct DNA sequencing is in FAST5 format.
 Sample data for Step1 can be download from the ["Step1_Input" folder in Google Drive](https://drive.google.com/drive/folders/1NZe6mQ5y1S8eaE-GwU124PvmONBoz5X7?usp=sharing).The user can download the file "sample_data.tar.gz" to a local computer and transfer it to the folder "DeepSignalplantPractise/input/Step1_Input". The command below is used to decompress the file:
 
@@ -55,12 +55,12 @@ tar -zxvf sample_data.tar.gz
 
 In the decompressed “sample_data” folder, users will find four files ending in .fast5. These example files are in FAST5 format and generated from Nanopore sequencing, containing the raw electric signal that we can call the base sequence and modification. Users can refer to https://hasindu2008.github.io/slow5specs/fast5_demystified.pdf for a detailed introduction of the FAST5 format.
 
-**d.Preprocessed data**
+**d.Preprocessed data**  
 In this case study, some steps would need preprocessed data as input.
 In Step3, if you fail to get access to Guppy, you can use our basecalled fastq for the downstream analysis. Download it from the ["Step3_Input" folder in Google Drive](https://drive.google.com/drive/folders/1pk4vecjdC48gslbeXGNKforUb0jxRPpz?usp=sharing) and move it to the "DeepSignalplantPractise/input/Step3_Input".
 In Step8, because the sample data is too small for bin calculation and visualization, we provide the preprocessed data from Pore-C as the input. Download it from the ["Step8_Input" folder in Google Drive](https://drive.google.com/drive/folders/14xw6gvQz_gjUi6p86NrSHZq59YABlzZO?usp=sharing) and move it to the "DeepSignalplantPractise/input/Step8_Input".
 
-**b.Reference genome**
+**b.Reference genome**  
 Download the reference genome in fasta format for mapping in Step4. Download the Genome gff file and extract the chromosome coordinates for Step8 input.
 ```
 #download reference genome
@@ -81,19 +81,16 @@ awk -F "\t" '{if($3=="chromosome") print($1"\t"$4-1"\t"$5)}' Arabidopsis_thalian
 **c.Pretrained model**  
 Download the model provided by DeepSignal-plant on its GitHub page (https://github.com/PengNi/DeepSignal-plant ) and move it to the folder "DeepSignalplantPractise/input/model" for 5mC calling in Step5.
 
-
-
-# Major steps 
-
+# Major steps  
 In this protocol, we use $PATHofDeepSignalPlant to indicate the path for Deepsignal-plant download and $CondaEnv to indicate the path of the Conda environment. Users will need to replace these two variables manually with the path they use.
 
-**Step1. Convert the multi-read FAST5 into single-read form**
+**Step1. Convert the multi-read FAST5 into single-read form**  
 ```
 #01.multi_to_single_fast5.sh
 multi_to_single_fast5 -i ../input/Step1_Input/sample_data -s ../cache/SINGLE_sample_data/ -t 30 --recursive
 ```
 
-**Step2. Basecall FAST5 files with Guppy**
+**Step2. Basecall FAST5 files with Guppy**  
 
 ```
 #02.basecall.sh
@@ -107,7 +104,7 @@ guppy_basecaller \
 --device "cuda:all:100%"
 ```
 
-**Step3. Add the basecalled sequence back to FAST5 with Tombo preprocess**
+**Step3. Add the basecalled sequence back to FAST5 with Tombo preprocess**  
 
 ```
 #03.tombo_preprocess.sh
@@ -122,7 +119,7 @@ tombo preprocess annotate_raw_with_fastqs \
 --overwrite \
 --processes 30
 ```
-**Step4. Map the raw signal to reference genome with Tombo resquiggle**
+**Step4. Map the raw signal to reference genome with Tombo resquiggle**  
 
 ```
 #04.tombo_resquiggle.sh
@@ -139,7 +136,7 @@ tombo resquiggle \
 --ignore-read-locks
 ```
 
-**Step5. Call methylation of reads with DeepSignal-plant call_mods**
+**Step5. Call methylation of reads with DeepSignal-plant call_mods**  
 ```
 #05.deepplant-met-mod.sh
 #environment setting, replace $CondaEnv/deepsignalpenv with your actual path
@@ -154,7 +151,7 @@ CUDA_VISIBLE_DEVICES=0,1 deepsignal_plant call_mods \
 --motifs C --nproc 30 --nproc_gpu 2
 ```
 
-**Step6. Calculate methylation frequency with DeepSignal-plant call_freq**
+**Step6. Calculate methylation frequency with DeepSignal-plant call_freq**  
 ```
 #06.deepplant-met-freq.sh
 #environment setting, replace $CondaEnv/deepsignalpenv with your actual path
@@ -166,7 +163,7 @@ deepsignal_plant call_freq \
 --sort --bed
 ```
 
-**Step7. Split the result into CG, CHG, and CHH context**
+**Step7. Split the result into CG, CHG, and CHH context**  
 ```
 #07.split_context.sh
 #replace $PATHofDeepSignalPlant with your actual path
@@ -175,7 +172,7 @@ python $PATHofDeepSignalPlant/scripts/split_freq_file_by_5mC_motif.py \
 --ref ../input/reference/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa
 ```
 
-**Step8. Calculate the weighted methylation level in the bin**
+**Step8. Calculate the weighted methylation level in the bin**  
 
 ```
 #08.met_level_bin.sh
@@ -187,7 +184,7 @@ python ../lib/python_scripts/met_level_bin.py \
 --outdir ../output
 ```
 
-**Step9. Visualize the methylation level by IGV and python plotting**
+**Step9. Visualize the methylation level by IGV and python plotting**  
 
 ```
 #09.chrom_met_visulization.sh
@@ -199,7 +196,7 @@ python ../lib/python_scripts/chrom_met_visulization.py \
 --chrom 4 --outdir ../output
 ```
 
-# Expected results
+# Expected results  
 **The intermediate results and the final results of this workflow is large, so we keep only part of the files as examples under the folder "cache" and "output" respectively, with the name marked with "EXAMPLE".**
 
 
