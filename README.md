@@ -30,8 +30,8 @@ git clone https://github.com/LIZW2019/DeepSignalplantPractise.git
 ```
 The related scripts are in the folder "DeepSignalplantPractise/lib".   
 
-The script "DeepSignalplantPractise/lib/python_scripts/met_level_bin.py" is used for bin methylation level calculation in Step8.   
-The script "DeepSignalplantPractise/lib/python_scripts/chrom_met_visulization.py" is for methylation level distribution plot in Step9. 
+The script "DeepSignalplantPractise/lib/python_scripts/met_level_bin.py" is used for bin methylation level calculation in **Step8**.   
+The script "DeepSignalplantPractise/lib/python_scripts/chrom_met_visulization.py" is for methylation level distribution plot in **Step9**. 
 
 The scripts from DeepSignal-plant are expected to be cloned in this folder:
 ```
@@ -39,7 +39,7 @@ cd DeepSignalplantPractise/lib
 git clone https://github.com/PengNi/deepsignal-plant.git
 ```
 
-You will find the script "split_freq_file_by_5mC_motif.py" under the folder "DeepSignalplantPractise/lib/deepsignal-plant/scripts", which will be used in Step7.
+You will find the script "split_freq_file_by_5mC_motif.py" under the folder "DeepSignalplantPractise/lib/deepsignal-plant/scripts", which will be used in **Step7**.
 We also use $PATHofDeepSignalPlant to indicate the path for Deepsignal-plant download in the commands. In this case, $PATHofDeepSignalPlant = "DeepSignalplantPractise/lib/deepsignal-plant/scripts".
 
 # Input Data  
@@ -57,8 +57,10 @@ In the decompressed “sample_data” folder, users will find four files ending 
 
 **d.Preprocessed data**  
 In this case study, some steps would need preprocessed data as input.  
-In Step3, if you fail to get access to Guppy, you can use our basecalled fastq for the downstream analysis. Download it from the ["Step3_Input" folder in Google Drive](https://drive.google.com/drive/folders/1pk4vecjdC48gslbeXGNKforUb0jxRPpz?usp=sharing) and move it to the "DeepSignalplantPractise/input/Step3_Input".  
-In Step8, because the sample data is too small for bin calculation and visualization, we provide the preprocessed data from Pore-C as the input. Download it from the ["Step8_Input" folder in Google Drive](https://drive.google.com/drive/folders/14xw6gvQz_gjUi6p86NrSHZq59YABlzZO?usp=sharing) and move it to the "DeepSignalplantPractise/input/Step8_Input".  
+
+In **Step3**, if you fail to get access to Guppy, you can use our basecalled fastq for the downstream analysis. Download it from the ["Step3_Input" folder in Google Drive](https://drive.google.com/drive/folders/1pk4vecjdC48gslbeXGNKforUb0jxRPpz?usp=sharing) and move it to the "DeepSignalplantPractise/input/Step3_Input".  
+
+In **Step8**, because the sample data is too small for bin calculation and visualization, we provide the preprocessed data from Pore-C as the input. Download it from the ["Step8_Input" folder in Google Drive](https://drive.google.com/drive/folders/14xw6gvQz_gjUi6p86NrSHZq59YABlzZO?usp=sharing) and move it to the "DeepSignalplantPractise/input/Step8_Input".  
 
 **b.Reference genome**  
 Download the reference genome in fasta format for mapping in Step4. Download the Genome gff file and extract the chromosome coordinates for Step8 input.
