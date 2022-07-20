@@ -28,7 +28,7 @@ If you clone this repository to your server, you will find a folder named "DeepS
 ```
 git clone https://github.com/LIZW2019/DeepSignalplantPractise.git
 ```
-The related scripts are in the folder "DeepSignalplantPractise/lib". 
+The related scripts are in the folder "DeepSignalplantPractise/lib".   
 
 The script "DeepSignalplantPractise/lib/python_scripts/met_level_bin.py" is used for bin methylation level calculation in Step8.   
 The script "DeepSignalplantPractise/lib/python_scripts/chrom_met_visulization.py" is for methylation level distribution plot in Step9. 
@@ -46,8 +46,8 @@ We also use $PATHofDeepSignalPlant to indicate the path for Deepsignal-plant dow
 The input data should be downloaded into different subfolders under the "DeepSignalplantPractise/input". The data we provided can be access in the our shared Google Drive folder: https://drive.google.com/drive/folders/1XCL6Ovvv9fpjg8A9prgIu2T7Ta5Yjc28
 
 **a.Sequence data in FAST5 format**  
-Data generated from Nanopore direct DNA sequencing is in FAST5 format.
-Sample data for Step1 can be download from the ["Step1_Input" folder in Google Drive](https://drive.google.com/drive/folders/1NZe6mQ5y1S8eaE-GwU124PvmONBoz5X7?usp=sharing).The user can download the file "sample_data.tar.gz" to a local computer and transfer it to the folder "DeepSignalplantPractise/input/Step1_Input". The command below is used to decompress the file:
+Data generated from Nanopore direct DNA sequencing is in FAST5 format.  
+Sample data for Step1 can be download from the ["Step1_Input" folder in Google Drive](https://drive.google.com/drive/folders/1NZe6mQ5y1S8eaE-GwU124PvmONBoz5X7?usp=sharing).The user can download the file "sample_data.tar.gz" to a local computer and transfer it to the folder "DeepSignalplantPractise/input/Step1_Input". The command below is used to decompress the file:  
 
 ```
 tar -zxvf sample_data.tar.gz 
@@ -56,9 +56,9 @@ tar -zxvf sample_data.tar.gz
 In the decompressed “sample_data” folder, users will find four files ending in .fast5. These example files are in FAST5 format and generated from Nanopore sequencing, containing the raw electric signal that we can call the base sequence and modification. Users can refer to https://hasindu2008.github.io/slow5specs/fast5_demystified.pdf for a detailed introduction of the FAST5 format.
 
 **d.Preprocessed data**  
-In this case study, some steps would need preprocessed data as input.
-In Step3, if you fail to get access to Guppy, you can use our basecalled fastq for the downstream analysis. Download it from the ["Step3_Input" folder in Google Drive](https://drive.google.com/drive/folders/1pk4vecjdC48gslbeXGNKforUb0jxRPpz?usp=sharing) and move it to the "DeepSignalplantPractise/input/Step3_Input".
-In Step8, because the sample data is too small for bin calculation and visualization, we provide the preprocessed data from Pore-C as the input. Download it from the ["Step8_Input" folder in Google Drive](https://drive.google.com/drive/folders/14xw6gvQz_gjUi6p86NrSHZq59YABlzZO?usp=sharing) and move it to the "DeepSignalplantPractise/input/Step8_Input".
+In this case study, some steps would need preprocessed data as input.  
+In Step3, if you fail to get access to Guppy, you can use our basecalled fastq for the downstream analysis. Download it from the ["Step3_Input" folder in Google Drive](https://drive.google.com/drive/folders/1pk4vecjdC48gslbeXGNKforUb0jxRPpz?usp=sharing) and move it to the "DeepSignalplantPractise/input/Step3_Input".  
+In Step8, because the sample data is too small for bin calculation and visualization, we provide the preprocessed data from Pore-C as the input. Download it from the ["Step8_Input" folder in Google Drive](https://drive.google.com/drive/folders/14xw6gvQz_gjUi6p86NrSHZq59YABlzZO?usp=sharing) and move it to the "DeepSignalplantPractise/input/Step8_Input".  
 
 **b.Reference genome**  
 Download the reference genome in fasta format for mapping in Step4. Download the Genome gff file and extract the chromosome coordinates for Step8 input.
