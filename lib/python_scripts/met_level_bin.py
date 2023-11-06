@@ -28,7 +28,7 @@ def level_size(region_bed,met_bed,prefix,binsize,outdir):
     for i in region_df.itertuples():
         region_chr,region_start,region_end = i
         query_text = '(chrom == @region_chr) and (start > @region_start) and (end <= @region_end)'
-        met_df_tmp = met_df.query(query_text)
+        met_df_tmp = met_df_valid.query(query_text)
         df_cut = pd.cut(met_df_tmp['start'],bins=np.arange(region_start,region_end+binsize,binsize),right=False,precision=0)
         met_df_tmp.loc[:,'interval'] = df_cut
         #keep all bins in the region to fill gap for no methylated bins
@@ -43,15 +43,15 @@ def level_size(region_bed,met_bed,prefix,binsize,outdir):
     met_df_interval_group = met_df_interval.groupby(
         by=['chrom','interval']).apply(
         lambda df: df.assign(
-            met_level = ((df['coverage']*df['met_percentage']/100).sum())/df['coverage'].sum(),size = len(df)))
+            met_level = ((df['coverage']*df['met_percentage']/100).sum())/(df['coverage'].sum()) if (df['coverage'].sum() != 0) else 0,size = len(df)))
 
 
 
-    #Keep the valid bin methylation level, while write the unvalid bin methylation level as zero
+    #Keep the valid bin methylation level, while write the unvalid bin methylation level as NA
     met_df_bin_filter =  met_df_interval_group.assign(
         met_level_final = lambda df: np.select(
             [df['size'] < 4, df['size']>= 4],
-            [0,df['met_level']]
+            [np.nan,df['met_level']]
         )
     )
 
@@ -61,6 +61,8 @@ def level_size(region_bed,met_bed,prefix,binsize,outdir):
     #spit the bin interval into two columna
     idx = pd.IntervalIndex(met_df_bedgraph['interval'])
     met_df_bedgraph_split_bin = met_df_bedgraph.assign(binstart =idx.left, binend = idx.right)
+    met_df_bedgraph_split_bin['binstart'] = met_df_bedgraph_split_bin['binstart'].astype(int)
+    met_df_bedgraph_split_bin['binend'] = met_df_bedgraph_split_bin['binend'].astype(int)
     met_df_bedgraph_split_bin.to_csv(f'{outdir}/{prefix}_binsize{binsize}.bedgraph',
                                      columns=['chrom','binstart','binend','met_level_final'],
                                      sep="\t",header=None,index=False,

@@ -19,13 +19,13 @@ from hurry.filesize import size,si
 def plot_met_chr(cg_bedg,chg_bedg,chh_bedg,region_bed,chrom,outdir):
     CG_table = pd.read_table(cg_bedg,names=['chrom','binstart','binend','met_level_final'],
                              header=None,
-                             converters={'chrom':str,'binstart':int,'binend':int,'met_level_final':float})
+                             converters={'chrom':str,'binstart':int,'binend':int})
     CHG_table = pd.read_table(chg_bedg,names=['chrom','binstart','binend','met_level_final'],
                              header=None,
-                             converters={'chrom':str,'binstart':int,'binend':int,'met_level_final':float})
+                             converters={'chrom':str,'binstart':int,'binend':int})
     CHH_table = pd.read_table(chh_bedg,names=['chrom','binstart','binend','met_level_final'],
                              header=None,
-                             converters={'chrom':str,'binstart':int,'binend':int,'met_level_final':float})
+                             converters={'chrom':str,'binstart':int,'binend':int})
 
     region_df = pd.read_table(region_bed,header=None,names=['chrom','chr_start','chr_end'],
                                 converters={'chrom':str,'chr_start':int,'chr_end':int},
@@ -50,13 +50,19 @@ def plot_met_chr(cg_bedg,chg_bedg,chh_bedg,region_bed,chrom,outdir):
 
     n = 0
     for i in [CG_table,CHG_table,CHH_table]:
-        ax_chr = ax
         df = i.query('chrom == @chrom')
-        ax_chr.plot(df['binstart'], df['met_level_final'], color=color_list[n],lw=4)
-        ax_chr.set_xticks([0, chrom_size])
-        ax_chr.set_xticklabels([0, size(chrom_size, system=si)])
-        ax_chr.title.set_text(f'Chr{chrom}')
-        sns.despine(ax=ax_chr)
+        if df['met_level_final'].isnull().sum() > 0:
+            sns.lineplot(data=df,x='binstart',y='met_level_final',
+            hue=df["met_level_final"].isna().cumsum(),
+            palette=[color_list[n]]*sum(df["met_level_final"].isna()),
+            lw=4,ax=ax)
+        else:
+            sns.lineplot(data=df,x='binstart',y='met_level_final',color=color_list[n],lw=4,ax=ax)
+
+        ax.set_xticks([0, chrom_size])
+        ax.set_xticklabels([0, size(chrom_size, system=si)])
+        ax.title.set_text(f'Chr{chrom}')
+        sns.despine(ax=ax)
         n += 1 
 
     from matplotlib.lines import Line2D
